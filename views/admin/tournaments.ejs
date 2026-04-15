@@ -1,0 +1,42 @@
+<%# FILNOTAT: tournaments.ejs. GJØR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Turneringer</h1>
+
+<form action="/admin/tournaments" method="post" class="card form">
+  <h2>Ny turnering</h2>
+  <label>Tittel <input type="text" name="title" required /></label>
+  <label>Idrett <input type="text" name="sport" required /></label>
+  <label>Startdato <input type="date" name="startDate" required /></label>
+  <label>Sluttdato <input type="date" name="endDate" required /></label>
+  <label>Sted <input type="text" name="location" required /></label>
+  <label>Status
+    <select name="status">
+      <option value="planlagt">Planlagt</option>
+      <option value="aktiv">Aktiv</option>
+      <option value="ferdig">Ferdig</option>
+    </select>
+  </label>
+  <button type="submit">Opprett</button>
+</form>
+
+<table>
+  <thead><tr><th>Tittel</th><th>Sport</th><th>Status</th><th>Handling</th></tr></thead>
+  <tbody>
+    <% tournaments.forEach((t) => { %>
+      <tr>
+        <td><%= t.title %></td>
+        <td><%= t.sport %></td>
+        <td><%= t.status %></td>
+        <td>
+          <form action="/admin/tournaments/<%= t._id %>/delete" method="post" class="inline">
+            <button type="submit">Slett</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

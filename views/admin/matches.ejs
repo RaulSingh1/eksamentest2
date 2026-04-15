@@ -1,0 +1,65 @@
+<%# FILNOTAT: matches.ejs. GJØR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Kamper</h1>
+
+<form action="/admin/matches" method="post" class="card form">
+  <h2>Ny kamp</h2>
+  <label>Turnering
+    <select name="tournamentId" required>
+      <% tournaments.forEach((t) => { %>
+        <option value="<%= t._id %>"><%= t.title %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Hjemmelag
+    <select name="homeTeamId" required>
+      <% teams.forEach((t) => { %>
+        <option value="<%= t._id %>"><%= t.name %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Bortelag
+    <select name="awayTeamId" required>
+      <% teams.forEach((t) => { %>
+        <option value="<%= t._id %>"><%= t.name %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Kickoff <input type="datetime-local" name="kickoff" required /></label>
+  <label>Bane/Sted <input type="text" name="venue" required /></label>
+  <button type="submit">Opprett kamp</button>
+</form>
+
+<table>
+  <thead><tr><th>Tid</th><th>Kamp</th><th>Status</th><th>Påmeldte</th><th>Resultat</th><th>Handling</th></tr></thead>
+  <tbody>
+    <% matches.forEach((m) => { %>
+      <tr>
+        <td><%= new Date(m.kickoff).toLocaleString('no-NO') %></td>
+        <td><%= m.homeTeamId?.name || 'Ukjent' %> - <%= m.awayTeamId?.name || 'Ukjent' %></td>
+        <td><%= m.status %></td>
+        <td><%= signupCountMap.get(String(m._id)) || 0 %></td>
+        <td>
+          <% if (m.status === 'spilt') { %>
+            <%= m.homeScore %> - <%= m.awayScore %>
+          <% } else { %>
+            <form action="/admin/matches/<%= m._id %>/result" method="post" class="inline">
+              <input type="number" name="homeScore" min="0" required />
+              <input type="number" name="awayScore" min="0" required />
+              <button type="submit">Lagre</button>
+            </form>
+          <% } %>
+        </td>
+        <td>
+          <form action="/admin/matches/<%= m._id %>/delete" method="post" class="inline">
+            <button type="submit">Slett</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

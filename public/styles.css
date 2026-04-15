@@ -1,0 +1,86 @@
+/* FILNOTAT: Global styling for frontend.
+   GJOR: Definerer layout, farger og komponentstil.
+   SNAKKER MED: alle EJS-views via class-navn/id-er. */
+
+:root {
+  --bg: #f4f6f8;
+  --text: #102a43;
+  --card: #ffffff;
+  --accent: #1f6feb;
+  --line: #d9e2ec;
+  --danger: #b42318;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { font-weight: 700; color: var(--text); text-decoration: none; }
+nav a { margin-right: 12px; }
+
+.container {
+  max-width: 1100px;
+  margin: 16px auto;
+  padding: 0 14px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.form {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+label { display: grid; gap: 5px; }
+input, select, button {
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+button {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.inline { display: inline-flex; gap: 6px; align-items: center; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+}
+
+.error { color: var(--danger); }

@@ -1,0 +1,28 @@
+<%# FILNOTAT: header.ejs. GJOR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title %> - Vind IL</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="/" class="brand">Vind IL Turneringssystem</a>
+    <nav>
+      <% if (currentUser) { %>
+        <% if (["superadmin", "turneringsleder", "lagleder"].includes(currentUser.role)) { %>
+          <a href="/admin">Admin</a>
+        <% } %>
+        <form action="/auth/logout" method="post" class="inline">
+          <button type="submit">Logg ut</button>
+        </form>
+      <% } else { %>
+        <a href="/auth/login">Logg inn</a>
+        <a href="/auth/register">Registrer</a>
+      <% } %>
+    </nav>
+  </header>
+  <main class="container">

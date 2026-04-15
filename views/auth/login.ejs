@@ -1,0 +1,22 @@
+<%# FILNOTAT: login.ejs. GJOR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Admin innlogging</h1>
+<% if (error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+
+<form action="/auth/login" method="post" class="card form">
+  <label>E-post
+    <input type="email" name="email" required />
+  </label>
+  <label>Passord
+    <input type="password" name="password" required />
+  </label>
+  <button type="submit">Logg inn</button>
+</form>
+
+<p>Mangler bruker? <a href="/auth/register">Registrer ny konto</a></p>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,56 @@
+<%# FILNOTAT: tournament.ejs. GJOR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1><%= tournament.title %></h1>
+<p><strong>Idrett:</strong> <%= tournament.sport %> | <strong>Sted:</strong> <%= tournament.location %></p>
+<% if (info) { %>
+  <p><%= info %></p>
+<% } %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tid</th>
+      <th>Kamp</th>
+      <th>Bane</th>
+      <th>Status</th>
+      <th>Påmeldte</th>
+      <th>Handling</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (!matches.length) { %>
+      <tr><td colspan="6">Ingen kamper enda.</td></tr>
+    <% } %>
+
+    <% matches.forEach((m) => { %>
+      <tr>
+        <td><%= new Date(m.kickoff).toLocaleString('no-NO') %></td>
+        <td><%= m.homeTeamId?.name || 'Ukjent' %> - <%= m.awayTeamId?.name || 'Ukjent' %></td>
+        <td><%= m.venue %></td>
+        <td><%= m.status %></td>
+        <td>
+          <%= signupCountMap.get(String(m._id)) || 0 %>
+        </td>
+        <td>
+          <% if (!currentUser) { %>
+            <span>Kun visning (publikum)</span>
+          <% } else if (currentUser.role !== 'viewer') { %>
+            <span>Ingen påmelding for admin-roller</span>
+          <% } else if (signedUpMatchIds.has(String(m._id))) { %>
+            <form action="/matches/<%= m._id %>/unsignup" method="post" class="inline">
+              <button type="submit">Meld av</button>
+            </form>
+          <% } else { %>
+            <form action="/matches/<%= m._id %>/signup" method="post" class="inline">
+              <button type="submit">Meld meg på</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

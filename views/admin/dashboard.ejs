@@ -1,0 +1,15 @@
+<%# FILNOTAT: dashboard.ejs. GJØR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Adminpanel</h1>
+<p>Innlogget som <strong><%= currentUser.name %></strong> (<%= currentUser.role %>)</p>
+
+<div class="grid">
+  <article class="card"><h2>Turneringer</h2><p><%= stats.tournaments %></p><a href="/admin/tournaments">Åpne</a></article>
+  <article class="card"><h2>Lag</h2><p><%= stats.teams %></p><a href="/admin/teams">Åpne</a></article>
+  <article class="card"><h2>Deltakere</h2><p><%= stats.players %></p><a href="/admin/players">Åpne</a></article>
+  <article class="card"><h2>Kamper</h2><p><%= stats.matches %></p><a href="/admin/matches">Åpne</a></article>
+</div>
+
+<%- include('../partials/footer') %>

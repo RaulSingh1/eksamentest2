@@ -1,0 +1,33 @@
+<%# FILNOTAT: teams.ejs. GJOR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Lag</h1>
+
+<form action="/admin/teams" method="post" class="card form">
+  <h2>Nytt lag</h2>
+  <label>Lagnavn <input type="text" name="name" required /></label>
+  <label>Aldersgruppe <input type="text" name="ageGroup" required /></label>
+  <label>Lagleder <input type="text" name="managerName" required /></label>
+  <button type="submit">Opprett</button>
+</form>
+
+<table>
+  <thead><tr><th>Lag</th><th>Aldersgruppe</th><th>Lagleder</th><th>Handling</th></tr></thead>
+  <tbody>
+    <% teams.forEach((t) => { %>
+      <tr>
+        <td><%= t.name %></td>
+        <td><%= t.ageGroup %></td>
+        <td><%= t.managerName %></td>
+        <td>
+          <form action="/admin/teams/<%= t._id %>/delete" method="post" class="inline">
+            <button type="submit">Slett</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

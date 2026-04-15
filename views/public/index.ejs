@@ -1,0 +1,24 @@
+<%# FILNOTAT: index.ejs. GJOR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Offentlige turneringer</h1>
+<p>Se kampoppsett og resultater uten innlogging.</p>
+
+<div class="grid">
+  <% if (!tournaments.length) { %>
+    <p>Ingen turneringer registrert ennå.</p>
+  <% } %>
+
+  <% tournaments.forEach((t) => { %>
+    <article class="card">
+      <h2><%= t.title %></h2>
+      <p><strong>Idrett:</strong> <%= t.sport %></p>
+      <p><strong>Sted:</strong> <%= t.location %></p>
+      <p><strong>Status:</strong> <%= t.status %></p>
+      <a href="/tournaments/<%= t._id %>">Se kampoppsett</a>
+    </article>
+  <% }) %>
+</div>
+
+<%- include('../partials/footer') %>

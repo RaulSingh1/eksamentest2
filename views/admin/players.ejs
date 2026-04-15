@@ -1,0 +1,44 @@
+<%# FILNOTAT: players.ejs. GJØR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Deltakere</h1>
+
+<form action="/admin/players" method="post" class="card form">
+  <h2>Ny deltaker</h2>
+  <label>Lag
+    <select name="teamId" required>
+      <% teams.forEach((t) => { %>
+        <option value="<%= t._id %>"><%= t.name %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Fornavn <input type="text" name="firstName" required /></label>
+  <label>Etternavn <input type="text" name="lastName" required /></label>
+  <label>Fødselsdato <input type="date" name="birthDate" required /></label>
+  <label>Foresatt navn <input type="text" name="guardianName" /></label>
+  <label>Foresatt telefon <input type="text" name="guardianPhone" /></label>
+  <label><input type="checkbox" name="consentPhoto" /> Samtykke bildepublisering</label>
+  <button type="submit">Opprett</button>
+</form>
+
+<table>
+  <thead><tr><th>Navn</th><th>Lag</th><th>Født</th><th>Samtykke bilde</th><th>Handling</th></tr></thead>
+  <tbody>
+    <% players.forEach((p) => { %>
+      <tr>
+        <td><%= p.firstName %> <%= p.lastName %></td>
+        <td><%= p.teamId?.name || 'Ukjent' %></td>
+        <td><%= new Date(p.birthDate).toLocaleDateString('no-NO') %></td>
+        <td><%= p.consentPhoto ? 'Ja' : 'Nei' %></td>
+        <td>
+          <form action="/admin/players/<%= p._id %>/delete" method="post" class="inline">
+            <button type="submit">Slett</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

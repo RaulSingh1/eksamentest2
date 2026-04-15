@@ -1,0 +1,25 @@
+<%# FILNOTAT: register.ejs. GJOR: View-template for brukergrensesnitt. SNAKKER MED: ruter i src/routes og data sendt fra serveren. %>
+
+<%- include('../partials/header') %>
+
+<h1>Opprett bruker</h1>
+<p>Standardbruker kan logge inn og se turneringer/kamper.</p>
+
+<% if (error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+
+<form action="/auth/register" method="post" class="card form">
+  <label>Navn
+    <input type="text" name="name" required />
+  </label>
+  <label>E-post
+    <input type="email" name="email" required />
+  </label>
+  <label>Passord (minst 8 tegn)
+    <input type="password" name="password" minlength="8" required />
+  </label>
+  <button type="submit">Registrer</button>
+</form>
+
+<%- include('../partials/footer') %>
