@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360" role="img" aria-labelledby="title desc">
+  <title id="title">Nettverksdiagram</title>
+  <desc id="desc">Publikum og admin kobler til Node.js VM, som kobler videre til MongoDB VM.</desc>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#d1d5db" />
+    </marker>
+    <style>
+      .bg { fill: #0b1220; }
+      .box { fill: #1f2937; stroke: #d1d5db; stroke-width: 2; rx: 14; ry: 14; }
+      .label { fill: #e5e7eb; font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: 700; }
+      .small { fill: #cbd5e1; font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
+      .line { stroke: #d1d5db; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .title { fill: #f8fafc; font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="360" rx="18" ry="18" />
+  <text class="title" x="30" y="45">Diagram: Nettverk</text>
+
+  <rect class="box" x="40" y="110" width="250" height="85" />
+  <text class="label" x="165" y="148" text-anchor="middle">Publikum / Deltaker</text>
+
+  <rect class="box" x="40" y="230" width="250" height="85" />
+  <text class="label" x="165" y="268" text-anchor="middle">Admin bruker</text>
+
+  <rect class="box" x="390" y="145" width="250" height="110" />
+  <text class="label" x="515" y="188" text-anchor="middle">Node.js VM</text>
+  <text class="small" x="515" y="218" text-anchor="middle">eksamennd</text>
+  <text class="small" x="515" y="242" text-anchor="middle">10.12.13.199 : 3000</text>
+
+  <rect class="box" x="745" y="155" width="180" height="95" rx="45" ry="45" />
+  <text class="label" x="835" y="198" text-anchor="middle">MongoDB</text>
+  <text class="small" x="835" y="224" text-anchor="middle">eksamenmg</text>
+  <text class="small" x="835" y="246" text-anchor="middle">10.12.13.230 : 27017</text>
+
+  <path class="line" d="M290 153 C335 153, 345 170, 390 185" />
+  <path class="line" d="M290 273 C335 273, 345 245, 390 215" />
+  <path class="line" d="M640 200 L745 200" />
+</svg>
