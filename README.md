@@ -28,7 +28,7 @@ Node.js + MongoDB, uten eksterne API-er.
    npm start
    ```
 
-App: `http://localhost:3000`
+App: `http://eksamennd.vind.lan:3000`
 
 ## Ruter
 - Offentlig side: `/`
@@ -120,7 +120,7 @@ flowchart TD
    npm start
    ```
 
-Appen kjører på `http://localhost:3000`.
+Appen kjører på `http://eksamennd.vind.lan:3000`.
 
 ## Viktige ruter
 - Offentlig side: `/`
