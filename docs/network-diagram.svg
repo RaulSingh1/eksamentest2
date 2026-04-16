@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360" role="img" aria-labelledby="title desc">
   <title id="title">Nettverksdiagram</title>
-  <desc id="desc">Publikum og admin kobler til Node.js VM, som kobler videre til MongoDB VM.</desc>
+  <desc id="desc">Publikum og admin kobler til Node.js VM eksamennd.vind.lan, som kobler videre til MongoDB VM eksamenmg.vind.lan.</desc>
 
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -27,12 +27,12 @@
 
   <rect class="box" x="390" y="145" width="250" height="110" />
   <text class="label" x="515" y="188" text-anchor="middle">Node.js VM</text>
-  <text class="small" x="515" y="218" text-anchor="middle">eksamennd</text>
+  <text class="small" x="515" y="218" text-anchor="middle">eksamennd.vind.lan</text>
   <text class="small" x="515" y="242" text-anchor="middle">10.12.13.199 : 3000</text>
 
   <rect class="box" x="745" y="155" width="180" height="95" rx="45" ry="45" />
   <text class="label" x="835" y="198" text-anchor="middle">MongoDB</text>
-  <text class="small" x="835" y="224" text-anchor="middle">eksamenmg</text>
+  <text class="small" x="835" y="224" text-anchor="middle">eksamenmg.vind.lan</text>
   <text class="small" x="835" y="246" text-anchor="middle">10.12.13.230 : 27017</text>
 
   <path class="line" d="M290 153 C335 153, 345 170, 390 185" />

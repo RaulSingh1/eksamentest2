@@ -1,8 +1,8 @@
 # IP-plan og nettverk (faktisk oppsett)
 
 ## VM-er
-- Node.js VM: `eksamennd` = `10.12.13.199`
-- MongoDB VM: `eksamenmg` = `10.12.13.230`
+- Node.js VM: `eksamennd` = `10.12.13.199` = `eksamennd.vind.lan`
+- MongoDB VM: `eksamenmg` = `10.12.13.230` = `eksamenmg.vind.lan`
 
 
 ### Hvorfor dette er gjort
@@ -14,6 +14,10 @@
 ## Tjenester
 - Node-app: port `3000` på `10.12.13.199`
 - MongoDB: port `27017` på `10.12.13.230`
+
+## DNS
+- `eksamennd.vind.lan` peker til Node-VM
+- `eksamenmg.vind.lan` peker til MongoDB-VM
 
 
 ### Hvorfor disse portene brukes
@@ -60,6 +64,7 @@ flowchart LR
 - Alle brukere går inn via Node-VM.
 - Kun Node-VM snakker med Mongo-VM.
 - Admin går via skolenett/VPN til Node, ikke direkte til Mongo.
+- DNS-navnene brukes nå i stedet for bare IP når det er mulig, for å gjøre oppsettet enklere å lese og vedlikeholde.
 
 
 ## Firewall (anbefalt eksamensversjon)

@@ -6,6 +6,10 @@ Node.js + MongoDB, uten eksterne API-er.
 - Node.js 20+
 - MongoDB 7+
 
+## DNS
+- Node.js VM: `eksamennd.vind.lan`
+- MongoDB VM: `eksamenmg.vind.lan`
+
 ## Oppstart
 1. Kopier miljøfil:
    ```bash
@@ -45,6 +49,8 @@ App: `http://localhost:3000`
 Diagrammet viser nettverket:
 - Publikum / deltaker bruker nettsiden via Node.js
 - Admin bruker går til Node.js via intern tilgang
+- Node.js VM: `eksamennd.vind.lan`
+- MongoDB VM: `eksamenmg.vind.lan`
 - Node.js kobler videre til MongoDB
 - MongoDB er ikke direkte tilgjengelig fra internett
 

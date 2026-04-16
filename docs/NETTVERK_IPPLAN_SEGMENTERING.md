@@ -5,13 +5,13 @@
 ### Komponenter i nettverket
 | Komponent | VM-navn | IP | Porter | Rolle |
 |---|---|---|---|---|
-| Applikasjon | `eksamennd` | `10.12.13.199` | `3000/tcp` | Kjører Node.js webapp |
-| Database | `eksamenmg` | `10.12.13.230` | `27017/tcp` | Kjører MongoDB |
+| Applikasjon | `eksamennd` / `eksamennd.vind.lan` | `10.12.13.199` | `3000/tcp` | Kjører Node.js webapp |
+| Database | `eksamenmg` / `eksamenmg.vind.lan` | `10.12.13.230` | `27017/tcp` | Kjører MongoDB |
 | Admin-klient | Lærer/elev PC | Skolenett/VPN | `22`, `3000` | Drift og administrasjon |
 
 ### IP-plan (faktisk)
-- Node.js VM: `10.12.13.199`
-- MongoDB VM: `10.12.13.230`
+- Node.js VM: `eksamennd.vind.lan` / `10.12.13.199`
+- MongoDB VM: `eksamenmg.vind.lan` / `10.12.13.230`
 - Trafikk som trengs:
   - Klient -> Node: `3000/tcp`
   - Node -> Mongo: `27017/tcp`
@@ -24,8 +24,8 @@ flowchart LR
   Internet[(Internett)]
   SchoolNet[(Skolenett / VPN)]
 
-  NodeVM["Node.js VM\neksamennd\n10.12.13.199\n3000/tcp"]
-  MongoVM["MongoDB VM\neksamenmg\n10.12.13.230\n27017/tcp"]
+  NodeVM["Node.js VM\neksamennd.vind.lan\n10.12.13.199\n3000/tcp"]
+  MongoVM["MongoDB VM\neksamenmg.vind.lan\n10.12.13.230\n27017/tcp"]
 
   Internet -->|HTTP/HTTPS til app| NodeVM
   SchoolNet -->|Admin| NodeVM
