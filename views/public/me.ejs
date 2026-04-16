@@ -1,0 +1,32 @@
+<%# FILNOTAT: me.ejs. GJOR: Viser bare innlogget brukers egne opplysninger. SNAKKER MED: routes/publicRoutes.js. %>
+
+<%- include('../partials/header') %>
+
+<h1>Min side</h1>
+<p>Her vises bare opplysningene som tilhører deg.</p>
+
+<section class="card">
+  <h2>Brukeropplysninger</h2>
+  <p><strong>Navn:</strong> <%= user.name %></p>
+  <p><strong>E-post:</strong> <%= user.email %></p>
+  <p><strong>Rolle:</strong> <%= user.role %></p>
+</section>
+
+<section class="card">
+  <h2>Mine påmeldinger</h2>
+  <% if (!signups.length) { %>
+    <p>Du har ingen registrerte påmeldinger ennå.</p>
+  <% } else { %>
+    <ul>
+      <% signups.forEach((signup) => { %>
+        <li>
+          <strong><%= signup.matchId?.tournamentId?.title || 'Ukjent turnering' %></strong>
+          - <%= signup.matchId?.homeTeamId?.name || 'Ukjent' %> mot <%= signup.matchId?.awayTeamId?.name || 'Ukjent' %>
+          (<%= new Date(signup.matchId?.kickoff || signup.createdAt).toLocaleString('no-NO') %>)
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+
+<%- include('../partials/footer') %>

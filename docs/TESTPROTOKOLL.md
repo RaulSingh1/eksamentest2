@@ -14,6 +14,9 @@
 | T10 | Restart app-prosess | App kommer opp igjen |  |  |  |
 | T11 | Sjekk Mongo status | `mongod` aktiv |  |  |  |
 | T12 | Test Node->Mongo forbindelse | Databasekobling ok |  |  |  |
+| T13 | Opprett lag med kontaktperson | Kontaktperson og telefon lagres og vises i admin |  |  |  |
+| T14 | Turnering nærmer seg slutt | Admin-dashboard viser varsel hvis resultater mangler |  |  |  |
+| T15 | Logg inn som viewer og åpne `Min side` | Bare egne opplysninger og egne påmeldinger vises |  |  |  |
 
 ## Godkjenning
 - Testet av: __________________

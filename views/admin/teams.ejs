@@ -9,17 +9,21 @@
   <label>Lagnavn <input type="text" name="name" required /></label>
   <label>Aldersgruppe <input type="text" name="ageGroup" required /></label>
   <label>Lagleder <input type="text" name="managerName" required /></label>
+  <label>Kontaktperson <input type="text" name="contactPersonName" /></label>
+  <label>Kontaktperson telefon <input type="text" name="contactPersonPhone" /></label>
   <button type="submit">Opprett</button>
 </form>
 
 <table>
-  <thead><tr><th>Lag</th><th>Aldersgruppe</th><th>Lagleder</th><th>Handling</th></tr></thead>
+  <thead><tr><th>Lag</th><th>Aldersgruppe</th><th>Lagleder</th><th>Kontaktperson</th><th>Telefon</th><th>Handling</th></tr></thead>
   <tbody>
     <% teams.forEach((t) => { %>
       <tr>
         <td><%= t.name %></td>
         <td><%= t.ageGroup %></td>
         <td><%= t.managerName %></td>
+        <td><%= t.contactPersonName || 'Ikke registrert' %></td>
+        <td><%= t.contactPersonPhone || 'Ikke registrert' %></td>
         <td>
           <form action="/admin/teams/<%= t._id %>/delete" method="post" class="inline">
             <button type="submit">Slett</button>

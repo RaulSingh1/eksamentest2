@@ -12,4 +12,20 @@
   <article class="card"><h2>Kamper</h2><p><%= stats.matches %></p><a href="/admin/matches">Åpne</a></article>
 </div>
 
+<section class="card">
+  <h2>Varsler</h2>
+  <% if (!notifications.length) { %>
+    <p>Ingen aktive varsler akkurat nå.</p>
+  <% } else { %>
+    <ul>
+      <% notifications.forEach((notification) => { %>
+        <li>
+          <strong><%= notification.tournamentTitle %></strong>
+          - <%= notification.message %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+
 <%- include('../partials/footer') %>

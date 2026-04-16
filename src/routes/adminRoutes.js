@@ -10,6 +10,7 @@ const Team = require("../models/Team");
 const Player = require("../models/Player");
 const Match = require("../models/Match");
 const MatchSignup = require("../models/MatchSignup");
+const AdminNotification = require("../models/AdminNotification");
 
 const router = express.Router();
 
@@ -25,10 +26,14 @@ router.get("/", async (req, res, next) => {
       Player.countDocuments(),
       Match.countDocuments()
     ]);
+    const notifications = await AdminNotification.find({ kind: "missing-results", resolvedAt: null })
+      .sort({ dueAt: 1 })
+      .lean();
 
     res.render("admin/dashboard", {
       title: "Admin",
-      stats: { tournaments, teams, players, matches }
+      stats: { tournaments, teams, players, matches },
+      notifications
     });
   } catch (err) {
     next(err);
@@ -85,8 +90,14 @@ router.get("/teams", async (req, res, next) => {
 // Opprett lag.
 router.post("/teams", requireRole("superadmin", "turneringsleder", "lagleder"), async (req, res, next) => {
   try {
-    const { name, ageGroup, managerName } = req.body;
-    await Team.create({ name, ageGroup, managerName });
+    const { name, ageGroup, managerName, contactPersonName, contactPersonPhone } = req.body;
+    await Team.create({
+      name,
+      ageGroup,
+      managerName,
+      contactPersonName: contactPersonName || "",
+      contactPersonPhone: contactPersonPhone || ""
+    });
     res.redirect("/admin/teams");
   } catch (err) {
     next(err);

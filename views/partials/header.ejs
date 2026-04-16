@@ -13,6 +13,7 @@
     <a href="/" class="brand">Vind IL Turneringssystem</a>
     <nav>
       <% if (currentUser) { %>
+        <a href="/me">Min side</a>
         <% if (["superadmin", "turneringsleder", "lagleder"].includes(currentUser.role)) { %>
           <a href="/admin">Admin</a>
         <% } %>

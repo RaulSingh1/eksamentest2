@@ -4,6 +4,7 @@
 
 const express = require("express");
 const { requireAuth } = require("../middleware/auth");
+const User = require("../models/User");
 const Tournament = require("../models/Tournament");
 const Match = require("../models/Match");
 const MatchSignup = require("../models/MatchSignup");
@@ -20,6 +21,39 @@ router.get("/", async (req, res, next) => {
   try {
     const tournaments = await Tournament.find().sort({ startDate: 1 }).lean();
     res.render("public/index", { title: "Turneringer", tournaments });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Egen side for innlogget bruker. Viser bare personens egne opplysninger.
+router.get("/me", requireAuth, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.session.user.id).lean();
+    if (!user) {
+      return res.status(404).render("public/error", {
+        title: "Ikke funnet",
+        message: "Brukeren finnes ikke."
+      });
+    }
+
+    const signups = await MatchSignup.find({ userId: user._id })
+      .populate({
+        path: "matchId",
+        populate: [
+          { path: "tournamentId", select: "title" },
+          { path: "homeTeamId", select: "name" },
+          { path: "awayTeamId", select: "name" }
+        ]
+      })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    res.render("public/me", {
+      title: "Min side",
+      user,
+      signups
+    });
   } catch (err) {
     next(err);
   }

@@ -121,3 +121,8 @@ flowchart TD
   D -- admin-roller --> F[Gå til adminpanel]
   F --> G[Opprett lag, deltakere, kamper, resultater]
 ```
+<<<<<<< ours
+=======
+e-post: admin@vindil.local
+passord: ChangeMe123!
+>>>>>>> theirs

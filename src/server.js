@@ -14,6 +14,7 @@ const { port, mongoUri, sessionSecret } = require("./config/env");
 const publicRoutes = require("./routes/publicRoutes");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const { startAdminReminderLoop } = require("./utils/adminReminderJob");
 
 async function start() {
   // Kobler til MongoDB før vi starter webserver.
@@ -75,6 +76,7 @@ async function start() {
   // Starter HTTP-server på valgt port.
   app.listen(port, () => {
     console.log(`Server kjører på http://localhost:${port}`);
+    startAdminReminderLoop();
   });
 }
 

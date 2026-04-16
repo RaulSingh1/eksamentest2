@@ -79,8 +79,8 @@ router.post("/login", async (req, res, next) => {
       return res.redirect("/admin");
     }
 
-    // Vanlig bruker sendes til offentlig side.
-    return res.redirect("/");
+    // Vanlig bruker sendes til egen side med kun egne opplysninger.
+    return res.redirect("/me");
   } catch (err) {
     next(err);
   }

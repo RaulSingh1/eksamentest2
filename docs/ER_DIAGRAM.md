@@ -9,6 +9,7 @@ Tenk at databasen er 6 bokser:
 4. `TOURNAMENT`: turneringer som opprettes.
 5. `MATCH`: kamper i en turnering, mellom to lag.
 6. `MATCH_SIGNUP`: kobling som sier at en bruker har meldt seg på en kamp.
+7. `ADMIN_NOTIFICATION`: varsler til admin når turneringer mangler resultater.
 
 ## Hva betyr pilene mellom boksene?
 - Én `TEAM` kan ha mange `PLAYER`.
@@ -16,6 +17,7 @@ Tenk at databasen er 6 bokser:
 - Én `MATCH` har ett hjemmelag og ett bortelag (begge peker til `TEAM`).
 - Én `USER` kan melde seg på mange `MATCH` via `MATCH_SIGNUP`.
 - Én `MATCH` kan ha mange påmeldte `USER` via `MATCH_SIGNUP`.
+- Én `TOURNAMENT` kan ha ett eller flere `ADMIN_NOTIFICATION`-varsel.
 
 ## Hva betyr ordene?
 - `PK`: unik hoved-ID for en boks.
@@ -50,6 +52,8 @@ erDiagram
     string name
     string ageGroup
     string managerName
+    string contactPersonName
+    string contactPersonPhone
     date createdAt
     date updatedAt
   }
@@ -97,6 +101,20 @@ erDiagram
     ObjectId _id PK
     ObjectId matchId FK
     ObjectId userId FK
+    date createdAt
+    date updatedAt
+  }
+
+  ADMIN_NOTIFICATION {
+    ObjectId _id PK
+    ObjectId tournamentId FK
+    string kind
+    string tournamentTitle
+    string message
+    number pendingMatchCount
+    date dueAt
+    date lastCheckedAt
+    date resolvedAt
     date createdAt
     date updatedAt
   }

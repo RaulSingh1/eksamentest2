@@ -11,7 +11,11 @@ const teamSchema = new mongoose.Schema(
     // Aldersklasse (f.eks. G14/J16/Senior).
     ageGroup: { type: String, required: true, trim: true },
     // Navn på ansvarlig lagleder.
-    managerName: { type: String, required: true, trim: true }
+    managerName: { type: String, required: true, trim: true },
+    // Kontaktperson som kan nås under turneringen.
+    contactPersonName: { type: String, trim: true, default: "" },
+    // Telefonnummer til kontaktpersonen.
+    contactPersonPhone: { type: String, trim: true, default: "" }
   },
   // Lager createdAt/updatedAt automatisk.
   { timestamps: true }
